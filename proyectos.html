@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="VEC Services - Servicios: eléctricos y baja tensión, puertas enrollables, iluminación, pintura y acabados, obra civil." />
+  <title>Servicios | VEC Services</title>
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Estilos SOLO para esta página (Carrusel PRO con fondo blur) -->
+  <style>
+    .service-card{ padding: 18px; }
+    .service-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:14px; flex-wrap:wrap; }
+    .service-top h2{ margin:0; }
+    .service-top p{ margin:10px 0 0; color: var(--muted); line-height:1.65; max-width: 78ch; }
+
+    /* Carrusel */
+    .carousel{
+      margin-top: 14px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.14);
+      box-shadow: 0 16px 40px rgba(0,0,0,.22);
+      position: relative;
+    }
+    .carousel-track{
+      display:flex;
+      transition: transform .35s ease;
+      will-change: transform;
+    }
+
+    /* ✅ Altura adaptable */
+    .slide{
+      min-width: 100%;
+      height: clamp(240px, 40vw, 420px);
+      position: relative;
+      overflow: hidden;
+      background: rgba(0,0,0,.18);
+    }
+
+    /* ✅ Fondo difuminado que llena el cuadro */
+    .slide .bg{
+      position:absolute; inset:0;
+      background-size: cover;
+      background-position: center;
+      filter: blur(16px);
+      transform: scale(1.12);
+      opacity: .45;
+    }
+
+    /* ✅ Imagen principal SIEMPRE completa (no recorte) */
+    .slide img{
+      position: relative;
+      z-index: 1;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      display:block;
+      transform: scale(1.02);
+      transition: transform .35s ease;
+    }
+    .carousel:hover .slide img{ transform: scale(1.06); }
+
+    /* Overlay suave */
+    .slide::after{
+      content:"";
+      position:absolute; inset:0;
+      z-index: 2;
+      pointer-events:none;
+      background: radial-gradient(900px 240px at 50% 30%, rgba(245,161,27,.06), transparent 55%),
+                  linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.05) 45%, rgba(0,0,0,.18));
+    }
+
+    /* Controles */
+    .car-btn{
+      position:absolute;
+      top:50%;
+      transform: translateY(-50%);
+      width: 44px; height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(8,22,38,.55);
+      color: rgba(255,255,255,.92);
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      box-shadow: 0 12px 30px rgba(0,0,0,.35);
+      transition: transform .12s ease, background .12s ease;
+      user-select:none;
+      z-index: 3;
+    }
+    .car-btn:hover{ transform: translateY(-50%) scale(1.03); background: rgba(8,22,38,.72); }
+    .car-prev{ left: 12px; }
+    .car-next{ right: 12px; }
+
+    /* Dots */
+    .dots{
+      position:absolute;
+      left: 50%;
+      bottom: 12px;
+      transform: translateX(-50%);
+      display:flex; gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(8,22,38,.45);
+      border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(6px);
+      z-index: 3;
+    }
+    .dot{
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.35);
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease;
+    }
+    .dot.active{ background: rgba(245,161,27,.95); transform: scale(1.25); }
+
+    @media (max-width: 640px){
+      .car-btn{ width: 40px; height: 40px; }
+    }
+  </style>
+</head>
+
+<body data-page="servicios">
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="index.html" aria-label="Ir a Inicio">
+          <img src="assets/logo-vec.jpeg" alt="Logo VEC Services" />
+          <div>
+            <div>VEC Services</div>
+            <small>Soluciones inmediatas</small>
+          </div>
+        </a>
+
+        <nav aria-label="Navegación principal">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a class="active" href="proyectos.html">Servicios</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-cta">
+          <a class="btn secondary" href="contacto.html">Cotiza</a>
+          <button class="burger" id="burger" aria-label="Abrir menú">☰</button>
+        </div>
+      </div>
+
+      <div class="mobile-panel" id="mobilePanel">
+        <a href="index.html">Inicio</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a class="active" href="proyectos.html">Servicios</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h1>Servicios</h1>
+            <p>Especialidades principales de VEC Services. Cada servicio tiene un carrusel (con foto completa + fondo blur).</p>
+          </div>
+          <a class="btn" href="contacto.html">Solicitar cotización</a>
+        </div>
+
+        <!-- 1) Eléctricos -->
+        <article class="card service-card">
+          <div class="service-top">
+            <div>
+              <h2>Servicios eléctricos y de baja tensión</h2>
+              <p>Instalaciones, tendido y trabajos eléctricos para proyectos residenciales y comerciales, incluyendo soluciones de baja tensión.</p>
+            </div>
+          </div>
+
+          <div class="carousel" data-carousel>
+            <div class="carousel-track">
+              <div class="slide">
+                <div class="bg" style="background-image:url('assets/electric1.jpeg')"></div>
+                <img src="assets/electric1.jpeg" alt="Servicios eléctricos 1" loading="lazy">
+              </div>
+              <div class="slide">
+                <div class="bg" style="background-image:url('assets/electric2.jpeg')"></div>
+                <img src="assets/electric2.jpeg" alt="Servicios eléctricos 2" loading="lazy">
+              </div>
+              <div class="slide">
+                <div class="bg" style="background-image:url('assets/electric3.jpeg')"></div>
+                <img src="assets/electric3.jpeg" alt="Servicios eléctricos 3" loading="lazy">
+              </div>
+            </div>
+            <button class="car-btn car-prev" type="button" aria-label="Anterior">‹</button>
+            <button class="car-btn car-next" type="button" aria-label="Siguiente">›</button>
+            <div class="dots" aria-label="Indicadores"></div>
+          </div>
+        </article>
+
+        <div style="height:14px"></div>
+
+        <!-- 2) Puertas enrollables -->
+        <article class="card service-card">
+          <div class="service-top">
+            <div>
+              <h2>Instalación de puertas enrollables</h2>
+              <p>Instalación y ajuste de puertas enrollables para locales, bodegas y áreas industriales.</p>
+            </div>
+          </div>
+
+          <div class="carousel" data-carousel>
+            <div class="carousel-track">
+              <div class="slide"><div class="bg" style="background-image:url('assets/puerta1.jpeg')"></div><img src="assets/puerta1.jpeg" alt="Puertas enrollables 1" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/puerta2.jpeg')"></div><img src="assets/puerta2.jpeg" alt="Puertas enrollables 2" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/puerta3.jpeg')"></div><img src="assets/puerta3.jpeg" alt="Puertas enrollables 3" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/puerta4.jpeg')"></div><img src="assets/puerta4.jpeg" alt="Puertas enrollables 4" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/puerta5.jpeg')"></div><img src="assets/puerta5.jpeg" alt="Puertas enrollables 5" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/puerta6.jpeg')"></div><img src="assets/puerta6.jpeg" alt="Puertas enrollables 6" loading="lazy"></div>
+            </div>
+            <button class="car-btn car-prev" type="button" aria-label="Anterior">‹</button>
+            <button class="car-btn car-next" type="button" aria-label="Siguiente">›</button>
+            <div class="dots" aria-label="Indicadores"></div>
+          </div>
+        </article>
+
+        <div style="height:14px"></div>
+
+        <!-- 3) Iluminación -->
+        <article class="card service-card">
+          <div class="service-top">
+            <div>
+              <h2>Iluminación</h2>
+              <p>Instalación y mejora de iluminación para espacios comerciales, bodegas y áreas de trabajo.</p>
+            </div>
+          </div>
+
+          <div class="carousel" data-carousel>
+            <div class="carousel-track">
+              <div class="slide"><div class="bg" style="background-image:url('assets/ilumi1.jpeg')"></div><img src="assets/ilumi1.jpeg" alt="Iluminación 1" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/ilumi2.jpeg')"></div><img src="assets/ilumi2.jpeg" alt="Iluminación 2" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/ilumi3.jpeg')"></div><img src="assets/ilumi3.jpeg" alt="Iluminación 3" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/ilumi4.jpeg')"></div><img src="assets/ilumi4.jpeg" alt="Iluminación 4" loading="lazy"></div>
+            </div>
+            <button class="car-btn car-prev" type="button" aria-label="Anterior">‹</button>
+            <button class="car-btn car-next" type="button" aria-label="Siguiente">›</button>
+            <div class="dots" aria-label="Indicadores"></div>
+          </div>
+        </article>
+
+        <div style="height:14px"></div>
+
+        <!-- 4) Pintura y acabados -->
+        <article class="card service-card">
+          <div class="service-top">
+            <div>
+              <h2>Pintura y acabados</h2>
+              <p>Pintura interior/exterior y terminaciones para entregar espacios listos para operar.</p>
+            </div>
+          </div>
+
+          <div class="carousel" data-carousel>
+            <div class="carousel-track">
+              <div class="slide"><div class="bg" style="background-image:url('assets/pinturaaca1.jpeg')"></div><img src="assets/pinturaaca1.jpeg" alt="Pintura y acabados 1" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/pinturaaca2.jpeg')"></div><img src="assets/pinturaaca2.jpeg" alt="Pintura y acabados 2" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/pinturaaca3.jpeg')"></div><img src="assets/pinturaaca3.jpeg" alt="Pintura y acabados 3" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/pinturaaca4.jpeg')"></div><img src="assets/pinturaaca4.jpeg" alt="Pintura y acabados 4" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/pinturaaca5.jpeg')"></div><img src="assets/pinturaaca5.jpeg" alt="Pintura y acabados 5" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/pinturaaca6.jpeg')"></div><img src="assets/pinturaaca6.jpeg" alt="Pintura y acabados 6" loading="lazy"></div>
+            </div>
+            <button class="car-btn car-prev" type="button" aria-label="Anterior">‹</button>
+            <button class="car-btn car-next" type="button" aria-label="Siguiente">›</button>
+            <div class="dots" aria-label="Indicadores"></div>
+          </div>
+        </article>
+
+        <div style="height:14px"></div>
+
+        <!-- 5) Obra civil -->
+        <article class="card service-card">
+          <div class="service-top">
+            <div>
+              <h2>Proyectos de obra civil</h2>
+              <p>Construcción y adecuaciones para infraestructura, locales y espacios funcionales.</p>
+            </div>
+          </div>
+
+          <div class="carousel" data-carousel>
+            <div class="carousel-track">
+              <div class="slide"><div class="bg" style="background-image:url('assets/civil1.jpeg')"></div><img src="assets/civil1.jpeg" alt="Obra civil 1" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/civil2.jpeg')"></div><img src="assets/civil2.jpeg" alt="Obra civil 2" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/civil3.jpeg')"></div><img src="assets/civil3.jpeg" alt="Obra civil 3" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/civil4.jpeg')"></div><img src="assets/civil4.jpeg" alt="Obra civil 4" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/civil5.jpeg')"></div><img src="assets/civil5.jpeg" alt="Obra civil 5" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/civil6.jpeg')"></div><img src="assets/civil6.jpeg" alt="Obra civil 6" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/civil7.jpeg')"></div><img src="assets/civil7.jpeg" alt="Obra civil 7" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/civil8.jpeg')"></div><img src="assets/civil8.jpeg" alt="Obra civil 8" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/civil9.jpeg')"></div><img src="assets/civil9.jpeg" alt="Obra civil 9" loading="lazy"></div>
+            </div>
+            <button class="car-btn car-prev" type="button" aria-label="Anterior">‹</button>
+            <button class="car-btn car-next" type="button" aria-label="Siguiente">›</button>
+            <div class="dots" aria-label="Indicadores"></div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-wrap">
+      <div>© <span id="year"></span> VEC Services.</div>
+      <div><a class="btn secondary" href="contacto.html">Contáctanos</a></div>
+    </div>
+  </footer>
+
+  <a class="wa-float" id="waFloat" href="#" aria-label="Escribir por WhatsApp">
+    <span class="wa-dot"></span><span>WhatsApp</span>
+  </a>
+
+  <script src="js/main.js"></script>
+
+  <!-- JS del carrusel (sin librerías) -->
+  <script>
+    (function(){
+      const carousels = document.querySelectorAll("[data-carousel]");
+      carousels.forEach((carousel) => {
+        const track = carousel.querySelector(".carousel-track");
+        const slides = Array.from(track.children);
+        const prevBtn = carousel.querySelector(".car-prev");
+        const nextBtn = carousel.querySelector(".car-next");
+        const dotsWrap = carousel.querySelector(".dots");
+
+        let index = 0;
+        let timer = null;
+
+        // Crear dots
+        slides.forEach((_, i) => {
+          const d = document.createElement("div");
+          d.className = "dot" + (i === 0 ? " active" : "");
+          d.setAttribute("role", "button");
+          d.setAttribute("aria-label", "Ir a imagen " + (i+1));
+          d.addEventListener("click", () => goTo(i, true));
+          dotsWrap.appendChild(d);
+        });
+
+        const dots = Array.from(dotsWrap.children);
+
+        function render(){
+          track.style.transform = `translateX(${-index * 100}%)`;
+          dots.forEach((d, i) => d.classList.toggle("active", i === index));
+        }
+
+        function goTo(i, userAction){
+          index = (i + slides.length) % slides.length;
+          render();
+          if(userAction) restartAuto();
+        }
+
+        function next(userAction){ goTo(index + 1, userAction); }
+        function prev(userAction){ goTo(index - 1, userAction); }
+
+        prevBtn.addEventListener("click", () => prev(true));
+        nextBtn.addEventListener("click", () => next(true));
+
+        // Auto-play
+        function startAuto(){
+          stopAuto();
+          timer = setInterval(() => next(false), 4500);
+        }
+        function stopAuto(){
+          if(timer) clearInterval(timer);
+          timer = null;
+        }
+        function restartAuto(){ startAuto(); }
+
+        carousel.addEventListener("mouseenter", stopAuto);
+        carousel.addEventListener("mouseleave", startAuto);
+
+        let startX = 0;
+        carousel.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; }, {passive:true});
+        carousel.addEventListener("touchend", (e) => {
+          const endX = e.changedTouches[0].clientX;
+          const dx = endX - startX;
+          if(Math.abs(dx) > 45){
+            dx < 0 ? next(true) : prev(true);
+          }
+        });
+
+        render();
+        startAuto();
+      });
+    })();
+  </script>
+</body>
+</html>

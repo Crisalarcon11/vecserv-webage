@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Contacto VEC Services - Cotiza por WhatsApp o correo. Construcción, remodelación e instalaciones." />
+  <title>Contacto | VEC Services</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="contacto">
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="index.html" aria-label="Ir a Inicio">
+          <img src="assets/logo-vec.jpeg" alt="Logo VEC Services" />
+          <div>
+            <div>VEC Services</div>
+            <small>Soluciones inmediatas</small>
+          </div>
+        </a>
+
+        <nav aria-label="Navegación principal">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="proyectos.html">Servicios</a></li>
+            <li><a class="active" href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-cta">
+          <a class="btn secondary" href="contacto.html">Cotiza</a>
+          <button class="burger" id="burger" aria-label="Abrir menú">☰</button>
+        </div>
+      </div>
+
+      <div class="mobile-panel" id="mobilePanel">
+        <a href="index.html">Inicio</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="proyectos.html">Proyectos</a>
+        <a class="active" href="contacto.html">Contacto</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h1>Contacto</h1>
+            <p>Cotiza rápido por WhatsApp o envíanos tu solicitud por correo.</p>
+          </div>
+        </div>
+
+        <div class="grid contact-grid">
+          <div class="card">
+            <h2 style="margin:0 0 8px">Información</h2>
+
+            <div class="contact-item">
+              <div style="width:28px">📍</div>
+              <div>
+                <b>Dirección</b>
+                <span id="addrText">—</span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div style="width:28px">📞</div>
+              <div>
+                <b>WhatsApp / Teléfono</b>
+                <span><span id="phone1">—</span> • <span id="phone2">—</span></span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div style="width:28px">✉️</div>
+              <div>
+                <b>Correo</b>
+                <span id="emailText">—</span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div style="width:28px">🧾</div>
+              <div>
+                <b>RUC</b>
+                <span id="rucText">—</span>
+              </div>
+            </div>
+
+            <hr class="sep" />
+
+            <h3 style="margin:0 0 6px">Referentes</h3>
+            <p class="hint" style="margin-top:0">Contactos de referencia.</p>
+
+            <ul class="list">
+              <li><b>Nelba Arévalo</b> — Estructura Mini Comisariato</li>
+              <li><b>Juan Carlos Caizatoa</b> — Compañía ICESA (jcaizatoa@icesa.ec)</li>
+              <li><b>Victor Escobar Castro</b> — Responsable</li>
+            </ul>
+
+            <div style="margin-top:12px">
+              <a class="btn secondary" id="waQuoteBtn" href="#">Escribir por WhatsApp</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2 style="margin:0 0 8px">Solicita una cotización</h2>
+
+            <form id="quoteForm" action="" method="post" novalidate>
+              <div class="form-row">
+                <div>
+                  <label for="name">Nombre</label>
+                  <input id="name" name="name" type="text" placeholder="Tu nombre" required />
+                </div>
+                <div>
+                  <label for="phone">Teléfono</label>
+                  <input id="phone" name="phone" type="tel" placeholder="099..." required />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div>
+                  <label for="email">Correo</label>
+                  <input id="email" name="email" type="email" placeholder="tucorreo@email.com" required />
+                </div>
+                <div>
+                  <label for="service">Tipo de proyecto</label>
+                  <select id="service" name="service">
+                    <option>Construcción</option>
+                    <option>Remodelación</option>
+                    <option>Instalaciones</option>
+                    <option>Estructuras metálicas</option>
+                    <option>Techado / Gypsum</option>
+                    <option>Publicidad / Brandeo</option>
+                    <option>Mantenimiento</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label for="message">Detalles</label>
+                <textarea id="message" name="message" placeholder="Ubicación, m2 aproximados, presupuesto estimado, fechas deseadas..."></textarea>
+              </div>
+
+              <div class="error" id="formError">Por favor completa nombre, teléfono y correo correctamente.</div>
+              <div class="success" id="formSuccess">¡Listo! Se abrió tu correo para enviar la solicitud.</div>
+
+              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px">
+                <button class="btn" type="submit">Enviar solicitud</button>
+                <a class="btn ghost" href="proyectos.html">Ver proyectos</a>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-wrap">
+      <div>© <span id="year"></span> VEC Services.</div>
+      <div>Soluciones inmediatas</div>
+    </div>
+  </footer>
+
+  <a class="wa-float" id="waFloat" href="#" aria-label="Escribir por WhatsApp">
+    <span class="wa-dot"></span><span>WhatsApp</span>
+  </a>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
