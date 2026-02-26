@@ -248,11 +248,46 @@ footer{
   box-shadow: 0 0 0 4px rgba(56,178,74,.18);
 }
 
+/* =========================
+   AJUSTE SOLO PARA NOSOTROS
+   (bloque del logo / imagen)
+   ========================= */
+.about-image{
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 16px 40px rgba(0,0,0,.22);
+  background: rgba(255,255,255,.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  min-height: 100%;
+}
+
+.about-image img{
+  width: 88%;
+  height: auto;
+  max-height: 320px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
 /* Responsive */
 @media (max-width: 980px){
   .hero-wrap{grid-template-columns: 1fr}
   .cols-3, .project-grid{grid-template-columns: repeat(2, minmax(0,1fr))}
   .contact-grid{grid-template-columns: 1fr}
+
+  .about-image{
+    min-height: auto;
+  }
+
+  .about-image img{
+    width: 82%;
+    max-height: 280px;
+  }
 }
 @media (max-width: 740px){
   nav ul{display:none}
@@ -263,4 +298,13 @@ footer{
 @media (max-width: 520px){
   .container{width:min(100% - 26px, var(--max))}
   .cols-3, .cols-2, .project-grid{grid-template-columns: 1fr}
+
+  .about-image{
+    padding: 18px;
+  }
+
+  .about-image img{
+    width: 90%;
+    max-height: 220px;
+  }
 }
