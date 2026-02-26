@@ -3,9 +3,187 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="VEC Services - Empresa constructora: construcción, remodelación, estructuras metálicas e instalaciones. Soluciones inmediatas." />
+  <meta name="description" content="VEC Services - Soluciones inmediatas en construcción, instalaciones, mantenimiento, iluminación, puertas enrollables y obra civil." />
   <title>VEC Services | Soluciones inmediatas</title>
   <link rel="stylesheet" href="css/styles.css" />
+
+  <style>
+    .home-hero{
+      padding: 34px 0 18px;
+    }
+
+    .home-hero-grid{
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .hero-box{
+      padding: 28px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(800px 300px at 0% 0%, rgba(245,161,27,.12), transparent 55%),
+        radial-gradient(700px 280px at 100% 20%, rgba(57,169,230,.10), transparent 55%),
+        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      box-shadow: 0 18px 42px rgba(0,0,0,.22);
+    }
+
+    .hero-box h1{
+      margin: 10px 0 14px;
+      font-size: clamp(2.1rem, 3vw, 3.4rem);
+      line-height: 1.02;
+    }
+
+    .hero-box p{
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 72ch;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 10px;
+    }
+
+    .hero-side{
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      box-shadow: 0 18px 42px rgba(0,0,0,.22);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .hero-side img{
+      width:100%;
+      height:100%;
+      min-height: 360px;
+      object-fit: cover;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+    }
+
+    .hero-badges{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 8px;
+    }
+
+    .hero-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      font-weight:800;
+      font-size:.88rem;
+      color: rgba(255,255,255,.92);
+    }
+
+    .features-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .feature-card{
+      padding: 20px;
+    }
+
+    .feature-card h3{
+      margin: 0 0 8px;
+      font-size: 1.12rem;
+    }
+
+    .feature-card p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .services-preview{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 16px;
+    }
+
+    .service-preview-card{
+      overflow:hidden;
+      padding:0;
+    }
+
+    .service-preview-card img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      display:block;
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+
+    .service-preview-body{
+      padding: 18px;
+    }
+
+    .service-preview-body h3{
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+    }
+
+    .service-preview-body p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .cta-home{
+      margin-top: 18px;
+      padding: 24px;
+      border-radius: 22px;
+      border: 1px solid rgba(245,161,27,.20);
+      background:
+        radial-gradient(700px 220px at 0% 0%, rgba(245,161,27,.16), transparent 50%),
+        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .cta-home h2{
+      margin:0 0 8px;
+    }
+
+    .cta-home p{
+      margin:0;
+      color: var(--muted);
+      line-height:1.7;
+      max-width: 70ch;
+    }
+
+    @media (max-width: 980px){
+      .home-hero-grid,
+      .features-grid,
+      .services-preview{
+        grid-template-columns: 1fr;
+      }
+
+      .hero-side img{
+        min-height: 280px;
+      }
+    }
+  </style>
 </head>
 <body data-page="inicio">
   <header>
@@ -37,43 +215,42 @@
       <div class="mobile-panel" id="mobilePanel">
         <a class="active" href="index.html">Inicio</a>
         <a href="nosotros.html">Nosotros</a>
-        <a href="proyectos.html">Proyectos</a>
+        <a href="proyectos.html">Servicios</a>
         <a href="contacto.html">Contacto</a>
       </div>
     </div>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container hero-wrap">
-        <div class="card">
-          <span class="kicker">Construcción • Remodelación • Instalaciones</span>
-          <h1>Construimos un futuro mejor a través de proyectos que generan valor.</h1>
-          <p>
-            En VEC Services ejecutamos obras y remodelaciones con enfoque en calidad, orden y cumplimiento.
-            Te acompañamos desde la planificación hasta la entrega final.
-          </p>
+    <section class="home-hero">
+      <div class="container">
+        <div class="home-hero-grid">
+          <div class="hero-box">
+            <span class="kicker">Construcción • Instalaciones • Mantenimiento</span>
+            <h1>Soluciones inmediatas para construcción, adecuaciones y mantenimiento</h1>
+            <p>
+              En VEC Services desarrollamos trabajos de obra civil, instalaciones eléctricas y de baja tensión,
+              iluminación, puertas enrollables, pintura, acabados y mantenimiento de construcciones. Atendemos
+              espacios comerciales, bodegas, infraestructura y áreas operativas con respuesta rápida y ejecución ordenada.
+            </p>
 
-          <div class="hero-actions">
-            <a class="btn" href="proyectos.html">Ver proyectos</a>
-            <a class="btn ghost" href="contacto.html">Solicitar cotización</a>
+            <div class="hero-actions">
+              <a class="btn" href="proyectos.html">Ver servicios</a>
+              <a class="btn secondary" href="contacto.html">Solicitar cotización</a>
+            </div>
+
+            <div class="hero-badges">
+              <span class="hero-badge">Obra civil</span>
+              <span class="hero-badge">Baja tensión</span>
+              <span class="hero-badge">Puertas enrollables</span>
+              <span class="hero-badge">Iluminación</span>
+              <span class="hero-badge">Mantenimiento</span>
+            </div>
           </div>
 
-          <div class="badge-row">
-            <span class="badge blue">Construcción y mecánica</span>
-            <span class="badge orange">Publicidad / brandeo</span>
-            <span class="badge green">Instalaciones</span>
-            <span class="badge red">Acabados</span>
+          <div class="hero-side">
+            <img src="assets/hero-equipo.jpeg" alt="Equipo VEC Services" />
           </div>
-        </div>
-
-        <div class="card">
-          <div class="stat"><span>Atención</span><b>Milagro / Samborondón</b></div>
-          <div class="stat"><span>WhatsApp</span><b>0997799132</b></div>
-          <div class="stat"><span>Correo</span><b>vecservice@yahoo.com</b></div>
-          <hr class="sep" />
-          <a class="btn secondary" href="contacto.html">Agenda una visita técnica</a>
-          <p class="hint" style="margin:10px 0 0">Respuesta rápida por WhatsApp.</p>
         </div>
       </div>
     </section>
@@ -83,39 +260,86 @@
         <div class="section-head">
           <div>
             <h2>¿Qué hacemos?</h2>
-            <p>Servicios principales, separados por especialidad.</p>
+            <p>Servicios principales para construcción, adecuación, operación y mantenimiento de espacios.</p>
           </div>
-          <a class="btn secondary" href="nosotros.html">Conocer más</a>
         </div>
 
-        <div class="grid cols-3">
-          <article class="card">
-            <div class="badge blue">Construcción y mecánica</div>
-            <ul class="list">
-              <li>Bodegas y galpones</li>
-              <li>Locales comerciales (Mini Comisariato, Tuti)</li>
-              <li>Desalojos y cierres de locales</li>
-              <li>Estructuras metálicas y techado</li>
-              <li>Pintura interior / exterior y gypsum</li>
-            </ul>
+        <div class="features-grid">
+          <article class="card feature-card">
+            <h3>Construcción y adecuaciones</h3>
+            <p>
+              Ejecutamos trabajos de infraestructura, remodelación y adecuación para locales, bodegas
+              y áreas funcionales, adaptando cada intervención a la necesidad real del espacio.
+            </p>
           </article>
 
-          <article class="card">
-            <div class="badge orange">Publicidad</div>
-            <ul class="list">
-              <li>Letreros corpóreos de diversas dimensiones</li>
-              <li>Brandeo y restauración de locales</li>
-            </ul>
+          <article class="card feature-card">
+            <h3>Instalaciones y acabados</h3>
+            <p>
+              Desarrollamos soluciones en instalaciones eléctricas, iluminación, puertas enrollables,
+              pintura y acabados para mejorar seguridad, imagen y operatividad.
+            </p>
           </article>
 
-          <article class="card">
-            <div class="badge green">Instalaciones</div>
-            <ul class="list">
-              <li>Sistemas eléctricos (tendido completo)</li>
-              <li>Iluminación, redes, seguridad y audio</li>
-              <li>Instalaciones básicas</li>
-            </ul>
+          <article class="card feature-card">
+            <h3>Mantenimiento preventivo y correctivo</h3>
+            <p>
+              También apoyamos con mantenimiento de construcciones e infraestructura para conservar
+              el inmueble en buen estado y responder a requerimientos técnicos con rapidez.
+            </p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Servicios destacados</h2>
+            <p>Algunas de nuestras especialidades con enfoque técnico y solución integral.</p>
+          </div>
+          <a class="btn secondary" href="proyectos.html">Ir a Servicios</a>
+        </div>
+
+        <div class="services-preview">
+          <article class="card service-preview-card">
+            <img src="assets/electric2.jpeg" alt="Servicios eléctricos" />
+            <div class="service-preview-body">
+              <h3>Servicios eléctricos y de baja tensión</h3>
+              <p>Instalaciones, mejoras, adecuaciones técnicas, tableros y soporte para sistemas eléctricos comerciales y operativos.</p>
+            </div>
+          </article>
+
+          <article class="card service-preview-card">
+            <img src="assets/puerta4.jpeg" alt="Puertas enrollables" />
+            <div class="service-preview-body">
+              <h3>Instalación de puertas enrollables</h3>
+              <p>Montaje y ajuste de accesos enrollables para locales, bodegas y frentes comerciales.</p>
+            </div>
+          </article>
+
+          <article class="card service-preview-card">
+            <img src="assets/civil6.jpeg" alt="Mantenimiento y obra civil" />
+            <div class="service-preview-body">
+              <h3>Obra civil y mantenimiento</h3>
+              <p>Trabajos de adecuación, conservación, corrección y mejora continua de construcciones e infraestructura.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="cta-home">
+          <div>
+            <h2>¿Tienes un proyecto o una necesidad de mantenimiento?</h2>
+            <p>
+              Podemos ayudarte con una visita técnica, evaluación del espacio y propuesta de trabajo
+              según el tipo de intervención que necesites.
+            </p>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn" href="contacto.html">Solicitar cotización</a>
+            <a class="btn secondary" href="nosotros.html">Conocer más</a>
+          </div>
         </div>
       </div>
     </section>
