@@ -3,18 +3,142 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="VEC Services - Servicios: eléctricos y baja tensión, puertas enrollables, iluminación, pintura y acabados, obra civil." />
+  <meta name="description" content="VEC Services - Servicios: eléctricos y baja tensión, puertas enrollables, iluminación, pintura y acabados, obra civil y mantenimiento de construcciones." />
   <title>Servicios | VEC Services</title>
   <link rel="stylesheet" href="css/styles.css" />
 
-  <!-- Estilos SOLO para esta página (Carrusel PRO con fondo blur) -->
   <style>
-    .service-card{ padding: 18px; }
-    .service-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:14px; flex-wrap:wrap; }
-    .service-top h2{ margin:0; }
-    .service-top p{ margin:10px 0 0; color: var(--muted); line-height:1.65; max-width: 78ch; }
+    .services-hero{
+      margin-bottom: 18px;
+    }
 
-    /* Carrusel */
+    .services-hero .hero-box{
+      padding: 24px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(800px 260px at 10% 0%, rgba(245,161,27,.10), transparent 55%),
+        radial-gradient(700px 260px at 100% 10%, rgba(57,169,230,.10), transparent 55%),
+        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      box-shadow: 0 16px 40px rgba(0,0,0,.22);
+    }
+
+    .services-hero h1{
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.05;
+    }
+
+    .services-hero p{
+      margin: 0;
+      max-width: 78ch;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1.02rem;
+    }
+
+    .hero-points{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .hero-point{
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .hero-point h3{
+      margin: 0 0 6px;
+      font-size: 1rem;
+    }
+
+    .hero-point p{
+      font-size: .95rem;
+      margin: 0;
+    }
+
+    .service-card{ padding: 20px; }
+    .service-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-bottom: 12px;
+    }
+
+    .service-top h2{
+      margin:0;
+      font-size: clamp(1.5rem, 2vw, 2.1rem);
+      line-height: 1.1;
+    }
+
+    .service-top p{
+      margin:10px 0 0;
+      color: var(--muted);
+      line-height:1.75;
+      max-width: 80ch;
+    }
+
+    .service-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 14px;
+    }
+
+    .meta-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.92);
+      font-weight: 800;
+      font-size: .88rem;
+    }
+
+    .service-extra{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+
+    .mini-card{
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .mini-card h3{
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .mini-card p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .mini-list{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .mini-list li{ margin: 4px 0; }
+
     .carousel{
       margin-top: 14px;
       border-radius: 18px;
@@ -24,24 +148,24 @@
       box-shadow: 0 16px 40px rgba(0,0,0,.22);
       position: relative;
     }
+
     .carousel-track{
       display:flex;
       transition: transform .35s ease;
       will-change: transform;
     }
 
-    /* ✅ Altura adaptable */
     .slide{
       min-width: 100%;
-      height: clamp(240px, 40vw, 420px);
+      height: clamp(240px, 40vw, 430px);
       position: relative;
       overflow: hidden;
       background: rgba(0,0,0,.18);
     }
 
-    /* ✅ Fondo difuminado que llena el cuadro */
     .slide .bg{
-      position:absolute; inset:0;
+      position:absolute;
+      inset:0;
       background-size: cover;
       background-position: center;
       filter: blur(16px);
@@ -49,7 +173,6 @@
       opacity: .45;
     }
 
-    /* ✅ Imagen principal SIEMPRE completa (no recorte) */
     .slide img{
       position: relative;
       z-index: 1;
@@ -60,24 +183,28 @@
       transform: scale(1.02);
       transition: transform .35s ease;
     }
-    .carousel:hover .slide img{ transform: scale(1.06); }
 
-    /* Overlay suave */
-    .slide::after{
-      content:"";
-      position:absolute; inset:0;
-      z-index: 2;
-      pointer-events:none;
-      background: radial-gradient(900px 240px at 50% 30%, rgba(245,161,27,.06), transparent 55%),
-                  linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.05) 45%, rgba(0,0,0,.18));
+    .carousel:hover .slide img{
+      transform: scale(1.06);
     }
 
-    /* Controles */
+    .slide::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index: 2;
+      pointer-events:none;
+      background:
+        radial-gradient(900px 240px at 50% 30%, rgba(245,161,27,.06), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.05) 45%, rgba(0,0,0,.18));
+    }
+
     .car-btn{
       position:absolute;
       top:50%;
       transform: translateY(-50%);
-      width: 44px; height: 44px;
+      width: 44px;
+      height: 44px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,.16);
       background: rgba(8,22,38,.55);
@@ -90,17 +217,22 @@
       user-select:none;
       z-index: 3;
     }
-    .car-btn:hover{ transform: translateY(-50%) scale(1.03); background: rgba(8,22,38,.72); }
+
+    .car-btn:hover{
+      transform: translateY(-50%) scale(1.03);
+      background: rgba(8,22,38,.72);
+    }
+
     .car-prev{ left: 12px; }
     .car-next{ right: 12px; }
 
-    /* Dots */
     .dots{
       position:absolute;
       left: 50%;
       bottom: 12px;
       transform: translateX(-50%);
-      display:flex; gap:8px;
+      display:flex;
+      gap:8px;
       padding: 8px 10px;
       border-radius: 999px;
       background: rgba(8,22,38,.45);
@@ -108,14 +240,51 @@
       backdrop-filter: blur(6px);
       z-index: 3;
     }
+
     .dot{
-      width: 8px; height: 8px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: rgba(255,255,255,.35);
       cursor:pointer;
       transition: transform .12s ease, background .12s ease;
     }
-    .dot.active{ background: rgba(245,161,27,.95); transform: scale(1.25); }
+
+    .dot.active{
+      background: rgba(245,161,27,.95);
+      transform: scale(1.25);
+    }
+
+    .cta-band{
+      margin-top: 18px;
+      padding: 22px;
+      border-radius: 20px;
+      border: 1px solid rgba(245,161,27,.20);
+      background:
+        radial-gradient(700px 220px at 0% 0%, rgba(245,161,27,.16), transparent 50%),
+        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .cta-band h2{
+      margin: 0 0 8px;
+    }
+
+    .cta-band p{
+      margin: 0;
+      color: var(--muted);
+      max-width: 72ch;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 980px){
+      .hero-points{ grid-template-columns: 1fr; }
+      .service-extra{ grid-template-columns: 1fr; }
+    }
 
     @media (max-width: 640px){
       .car-btn{ width: 40px; height: 40px; }
@@ -162,37 +331,81 @@
   <main>
     <section>
       <div class="container">
+
+        <div class="services-hero">
+          <div class="hero-box">
+            <h1>Servicios integrales para construcción, adecuación y mantenimiento</h1>
+            <p>
+              En VEC Services desarrollamos soluciones para obras civiles, instalaciones, acabados,
+              mantenimiento correctivo y preventivo, remodelaciones y adecuaciones comerciales.
+              Trabajamos con enfoque en respuesta rápida, ejecución ordenada y resultados funcionales
+              para locales, bodegas, infraestructura y espacios de operación.
+            </p>
+
+            <div class="hero-points">
+              <div class="hero-point">
+                <h3>Atención integral</h3>
+                <p>Unificamos construcción, instalaciones, acabados y mantenimiento en un solo equipo de trabajo.</p>
+              </div>
+              <div class="hero-point">
+                <h3>Soporte técnico</h3>
+                <p>Atendemos requerimientos correctivos, preventivos y adecuaciones para mantener la operación activa.</p>
+              </div>
+              <div class="hero-point">
+                <h3>Soluciones inmediatas</h3>
+                <p>Priorizamos rapidez, coordinación y seguimiento para entregar resultados con orden y cumplimiento.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="section-head">
           <div>
-            <h1>Servicios</h1>
-            <p>Especialidades principales de VEC Services.</p>
+            <h2>Nuestras especialidades</h2>
+            <p>Servicios principales de VEC Services con soporte para construcción, remodelación y mantenimiento.</p>
           </div>
           <a class="btn" href="contacto.html">Solicitar cotización</a>
         </div>
 
-        <!-- 1) Eléctricos -->
         <article class="card service-card">
           <div class="service-top">
             <div>
               <h2>Servicios eléctricos y de baja tensión</h2>
-              <p>Instalaciones, tendido y trabajos eléctricos para proyectos residenciales y comerciales, incluyendo soluciones de baja tensión.</p>
+              <p>
+                Ejecutamos instalaciones, tendido, adecuaciones y mejoras eléctricas para proyectos
+                residenciales, comerciales e industriales. Incluimos soluciones de baja tensión,
+                organización de tableros, puntos de conexión y soporte técnico para ampliar o corregir sistemas existentes.
+              </p>
+
+              <div class="service-meta">
+                <span class="meta-pill">Tableros eléctricos</span>
+                <span class="meta-pill">Baja tensión</span>
+                <span class="meta-pill">Adecuaciones y mejoras</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-extra">
+            <div class="mini-card">
+              <h3>¿Qué incluye este servicio?</h3>
+              <ul class="mini-list">
+                <li>Instalaciones nuevas y ampliaciones.</li>
+                <li>Revisión y ordenamiento de tableros.</li>
+                <li>Canalización, cableado y puntos de energía.</li>
+                <li>Correcciones técnicas en sistemas existentes.</li>
+              </ul>
+            </div>
+            <div class="mini-card">
+              <h3>Aplicaciones</h3>
+              <p>Locales comerciales, bodegas, oficinas, áreas técnicas y espacios que requieren una instalación segura y funcional.</p>
             </div>
           </div>
 
           <div class="carousel" data-carousel>
             <div class="carousel-track">
-              <div class="slide">
-                <div class="bg" style="background-image:url('assets/electric1.jpeg')"></div>
-                <img src="assets/electric1.jpeg" alt="Servicios eléctricos 1" loading="lazy">
-              </div>
-              <div class="slide">
-                <div class="bg" style="background-image:url('assets/electric2.jpeg')"></div>
-                <img src="assets/electric2.jpeg" alt="Servicios eléctricos 2" loading="lazy">
-              </div>
-              <div class="slide">
-                <div class="bg" style="background-image:url('assets/electric3.jpeg')"></div>
-                <img src="assets/electric3.jpeg" alt="Servicios eléctricos 3" loading="lazy">
-              </div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/electric1.jpeg')"></div><img src="assets/electric1.jpeg" alt="Servicios eléctricos 1" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/electric2.jpeg')"></div><img src="assets/electric2.jpeg" alt="Servicios eléctricos 2" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/electric3.jpeg')"></div><img src="assets/electric3.jpeg" alt="Servicios eléctricos 3" loading="lazy"></div>
             </div>
             <button class="car-btn car-prev" type="button" aria-label="Anterior">‹</button>
             <button class="car-btn car-next" type="button" aria-label="Siguiente">›</button>
@@ -202,12 +415,37 @@
 
         <div style="height:14px"></div>
 
-        <!-- 2) Puertas enrollables -->
         <article class="card service-card">
           <div class="service-top">
             <div>
               <h2>Instalación de puertas enrollables</h2>
-              <p>Instalación y ajuste de puertas enrollables para locales, bodegas y áreas industriales.</p>
+              <p>
+                Realizamos instalación, montaje, ajuste y adecuación de puertas enrollables para
+                locales comerciales, bodegas y áreas industriales. Buscamos que cada solución
+                responda tanto a la operación diaria como a la seguridad del espacio.
+              </p>
+
+              <div class="service-meta">
+                <span class="meta-pill">Montaje</span>
+                <span class="meta-pill">Ajuste y nivelación</span>
+                <span class="meta-pill">Aplicación comercial</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-extra">
+            <div class="mini-card">
+              <h3>Beneficios</h3>
+              <ul class="mini-list">
+                <li>Mayor seguridad para accesos principales.</li>
+                <li>Mejor funcionalidad en apertura y cierre.</li>
+                <li>Adaptación a locales y frentes comerciales.</li>
+                <li>Soporte para remodelaciones o nuevas instalaciones.</li>
+              </ul>
+            </div>
+            <div class="mini-card">
+              <h3>Ideal para</h3>
+              <p>Tiendas, bodegas, áreas de despacho, accesos comerciales y frentes de operación que necesitan soluciones resistentes y prácticas.</p>
             </div>
           </div>
 
@@ -228,12 +466,37 @@
 
         <div style="height:14px"></div>
 
-        <!-- 3) Iluminación -->
         <article class="card service-card">
           <div class="service-top">
             <div>
               <h2>Iluminación</h2>
-              <p>Instalación y mejora de iluminación para espacios comerciales, bodegas y áreas de trabajo.</p>
+              <p>
+                Diseñamos e instalamos mejoras de iluminación para áreas comerciales, bodegas,
+                espacios operativos y zonas de trabajo. Priorizamos visibilidad, funcionalidad
+                y una instalación adaptada al uso real del lugar.
+              </p>
+
+              <div class="service-meta">
+                <span class="meta-pill">Mejora visual</span>
+                <span class="meta-pill">Instalación técnica</span>
+                <span class="meta-pill">Espacios operativos</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-extra">
+            <div class="mini-card">
+              <h3>Alcance</h3>
+              <ul class="mini-list">
+                <li>Renovación de luminarias.</li>
+                <li>Iluminación de áreas de trabajo y circulación.</li>
+                <li>Mejoras para visibilidad y operación continua.</li>
+                <li>Integración con instalaciones eléctricas existentes.</li>
+              </ul>
+            </div>
+            <div class="mini-card">
+              <h3>Resultado esperado</h3>
+              <p>Ambientes más seguros, funcionales y mejor acondicionados para clientes, personal y procesos internos.</p>
             </div>
           </div>
 
@@ -252,12 +515,37 @@
 
         <div style="height:14px"></div>
 
-        <!-- 4) Pintura y acabados -->
         <article class="card service-card">
           <div class="service-top">
             <div>
               <h2>Pintura y acabados</h2>
-              <p>Pintura interior/exterior y terminaciones para entregar espacios listos para operar.</p>
+              <p>
+                Ejecutamos pintura interior y exterior, detalles finales y acabados para renovación
+                de espacios, adecuaciones comerciales y entrega de áreas listas para operar.
+                Este servicio aporta imagen, limpieza visual y cierre profesional a cada proyecto.
+              </p>
+
+              <div class="service-meta">
+                <span class="meta-pill">Renovación visual</span>
+                <span class="meta-pill">Acabados finales</span>
+                <span class="meta-pill">Entrega lista</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-extra">
+            <div class="mini-card">
+              <h3>Trabajos frecuentes</h3>
+              <ul class="mini-list">
+                <li>Pintura de superficies interiores y exteriores.</li>
+                <li>Resane y preparación de áreas.</li>
+                <li>Acabados para renovación de imagen comercial.</li>
+                <li>Intervenciones de mantenimiento estético y funcional.</li>
+              </ul>
+            </div>
+            <div class="mini-card">
+              <h3>Valor agregado</h3>
+              <p>Una mejor presentación del espacio, mayor orden visual y adaptación del inmueble a nuevos requerimientos operativos o comerciales.</p>
             </div>
           </div>
 
@@ -278,12 +566,37 @@
 
         <div style="height:14px"></div>
 
-        <!-- 5) Obra civil -->
         <article class="card service-card">
           <div class="service-top">
             <div>
               <h2>Proyectos de obra civil</h2>
-              <p>Construcción y adecuaciones para infraestructura, locales y espacios funcionales.</p>
+              <p>
+                Desarrollamos trabajos de construcción, adecuación y preparación de infraestructura
+                para espacios funcionales, locales, bodegas y áreas de operación. Ejecutamos
+                intervenciones que requieren organización de obra, personal técnico y solución integral.
+              </p>
+
+              <div class="service-meta">
+                <span class="meta-pill">Construcción</span>
+                <span class="meta-pill">Adecuaciones</span>
+                <span class="meta-pill">Infraestructura funcional</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-extra">
+            <div class="mini-card">
+              <h3>Aplicación del servicio</h3>
+              <ul class="mini-list">
+                <li>Intervenciones para nuevas necesidades operativas.</li>
+                <li>Obras de adecuación, retiro o transformación de áreas.</li>
+                <li>Mejora de infraestructura para uso comercial o técnico.</li>
+                <li>Apoyo en proyectos de renovación y expansión.</li>
+              </ul>
+            </div>
+            <div class="mini-card">
+              <h3>Enfoque</h3>
+              <p>Buscamos soluciones ejecutables, seguras y alineadas con el uso real del espacio, priorizando funcionalidad y rapidez de respuesta.</p>
             </div>
           </div>
 
@@ -305,6 +618,74 @@
           </div>
         </article>
 
+        <div style="height:14px"></div>
+
+        <article class="card service-card">
+          <div class="service-top">
+            <div>
+              <h2>Mantenimiento de construcciones e infraestructura</h2>
+              <p>
+                También brindamos mantenimiento preventivo y correctivo para edificaciones,
+                locales, bodegas e infraestructura en uso. Este servicio está pensado para
+                conservar la operatividad del espacio, corregir deterioros, renovar áreas y
+                atender necesidades técnicas antes de que se conviertan en problemas mayores.
+              </p>
+
+              <div class="service-meta">
+                <span class="meta-pill">Preventivo</span>
+                <span class="meta-pill">Correctivo</span>
+                <span class="meta-pill">Mejora continua</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-extra">
+            <div class="mini-card">
+              <h3>Incluye trabajos como:</h3>
+              <ul class="mini-list">
+                <li>Reparaciones y adecuaciones menores o integrales.</li>
+                <li>Renovación de pintura y acabados deteriorados.</li>
+                <li>Correcciones en iluminación e instalaciones.</li>
+                <li>Mantenimiento de accesos, puertas y componentes funcionales.</li>
+                <li>Intervenciones para conservar la operación del inmueble.</li>
+              </ul>
+            </div>
+            <div class="mini-card">
+              <h3>¿Por qué es importante?</h3>
+              <p>
+                El mantenimiento oportuno ayuda a prolongar la vida útil de la infraestructura,
+                mejorar la imagen del espacio y evitar interrupciones operativas o costos mayores a futuro.
+              </p>
+            </div>
+          </div>
+
+          <div class="carousel" data-carousel>
+            <div class="carousel-track">
+              <div class="slide"><div class="bg" style="background-image:url('assets/pinturaaca2.jpeg')"></div><img src="assets/pinturaaca2.jpeg" alt="Mantenimiento de construcciones 1" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/ilumi2.jpeg')"></div><img src="assets/ilumi2.jpeg" alt="Mantenimiento de construcciones 2" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/puerta4.jpeg')"></div><img src="assets/puerta4.jpeg" alt="Mantenimiento de construcciones 3" loading="lazy"></div>
+              <div class="slide"><div class="bg" style="background-image:url('assets/civil6.jpeg')"></div><img src="assets/civil6.jpeg" alt="Mantenimiento de construcciones 4" loading="lazy"></div>
+            </div>
+            <button class="car-btn car-prev" type="button" aria-label="Anterior">‹</button>
+            <button class="car-btn car-next" type="button" aria-label="Siguiente">›</button>
+            <div class="dots" aria-label="Indicadores"></div>
+          </div>
+        </article>
+
+        <div class="cta-band">
+          <div>
+            <h2>¿Necesitas una visita técnica o una cotización?</h2>
+            <p>
+              Podemos apoyarte en construcción, adecuaciones, instalaciones, mantenimiento y mejoras
+              para espacios comerciales, operativos o de infraestructura. Cuéntanos tu necesidad y te ayudamos a definir la mejor solución.
+            </p>
+          </div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn" href="contacto.html">Solicitar cotización</a>
+            <a class="btn secondary" href="contacto.html">Hablar con nosotros</a>
+          </div>
+        </div>
+
       </div>
     </section>
   </main>
@@ -322,7 +703,6 @@
 
   <script src="js/main.js"></script>
 
-  <!-- JS del carrusel (sin librerías) -->
   <script>
     (function(){
       const carousels = document.querySelectorAll("[data-carousel]");
@@ -336,12 +716,11 @@
         let index = 0;
         let timer = null;
 
-        // Crear dots
         slides.forEach((_, i) => {
           const d = document.createElement("div");
           d.className = "dot" + (i === 0 ? " active" : "");
           d.setAttribute("role", "button");
-          d.setAttribute("aria-label", "Ir a imagen " + (i+1));
+          d.setAttribute("aria-label", "Ir a imagen " + (i + 1));
           d.addEventListener("click", () => goTo(i, true));
           dotsWrap.appendChild(d);
         });
@@ -365,15 +744,16 @@
         prevBtn.addEventListener("click", () => prev(true));
         nextBtn.addEventListener("click", () => next(true));
 
-        // Auto-play
         function startAuto(){
           stopAuto();
           timer = setInterval(() => next(false), 4500);
         }
+
         function stopAuto(){
           if(timer) clearInterval(timer);
           timer = null;
         }
+
         function restartAuto(){ startAuto(); }
 
         carousel.addEventListener("mouseenter", stopAuto);
