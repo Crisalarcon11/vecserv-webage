@@ -45,13 +45,18 @@
       border-radius: 20px;
       border: 1px solid rgba(255,255,255,.12);
       box-shadow: 0 16px 40px rgba(0,0,0,.22);
+      background: rgba(255,255,255,.03);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 20px;
     }
 
     .about-image img{
       width:100%;
       height:100%;
       min-height: 340px;
-      object-fit: cover;
+      object-fit: contain;
       display:block;
     }
 
@@ -103,20 +108,46 @@
     }
 
     .stat-card{
-      padding: 18px;
+      padding: 20px 18px;
       text-align:center;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 14px 30px rgba(0,0,0,.20);
     }
 
     .stat-card b{
       display:block;
       font-size: 1.35rem;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
+      color: #ffffff;
     }
 
     .stat-card span{
-      color: var(--muted);
-      line-height: 1.5;
+      color: rgba(255,255,255,.92);
+      line-height: 1.55;
       font-size: .95rem;
+      display:block;
+    }
+
+    /* Colores tipo logo */
+    .stat-red{
+      background:
+        linear-gradient(135deg, rgba(230,69,58,.92), rgba(180,32,32,.88));
+    }
+
+    .stat-orange{
+      background:
+        linear-gradient(135deg, rgba(245,161,27,.95), rgba(210,120,10,.90));
+    }
+
+    .stat-green{
+      background:
+        linear-gradient(135deg, rgba(76,175,80,.93), rgba(43,131,47,.90));
+    }
+
+    .stat-blue{
+      background:
+        linear-gradient(135deg, rgba(52,182,232,.95), rgba(22,125,185,.90));
     }
 
     .closing-band{
@@ -203,10 +234,10 @@
               bodegas, espacios operativos y construcciones en uso.
             </p>
           </div>
-<div class="about-image">
-            <img src="assets/logo-vec.jpeg" alt="Equipo de VEC Services" />
+
+          <div class="about-image">
+            <img src="assets/logo-vec.jpeg" alt="Logo de VEC Services" />
           </div>
-          
         </div>
 
         <div class="info-grid">
@@ -228,19 +259,19 @@
         </div>
 
         <div class="stats-grid">
-          <div class="card stat-card">
+          <div class="stat-card stat-red">
             <b>Construcción</b>
             <span>Obra civil, adecuaciones y mejoras de infraestructura.</span>
           </div>
-          <div class="card stat-card">
+          <div class="stat-card stat-orange">
             <b>Instalaciones</b>
             <span>Electricidad, baja tensión, iluminación y accesos.</span>
           </div>
-          <div class="card stat-card">
+          <div class="stat-card stat-green">
             <b>Acabados</b>
             <span>Pintura, renovación visual y cierre funcional del proyecto.</span>
           </div>
-          <div class="card stat-card">
+          <div class="stat-card stat-blue">
             <b>Mantenimiento</b>
             <span>Preventivo y correctivo para conservar la operación del espacio.</span>
           </div>
